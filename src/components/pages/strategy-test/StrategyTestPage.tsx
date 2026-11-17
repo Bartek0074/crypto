@@ -1,4 +1,5 @@
 import { CandlestickChart } from "@/components/charts/CandlestickChart";
+import { palette } from "@/config/theme";
 import type { Candle, CandleInterval, CandleSymbol } from "@/types/chart";
 
 interface StrategyTestPageProps {
@@ -13,13 +14,13 @@ export function StrategyTestPage({ candles, symbol, interval, error }: StrategyT
     <main className="mx-auto max-w-[1800px] space-y-6">
       <div>
         <h1 className="m-0 text-3xl font-semibold tracking-tight">Strategy Test</h1>
-        <p className="mt-2 mb-0 text-sm text-[#a1b0b7]">{symbol} · {interval} · Binance Spot</p>
+        <p className="mt-2 mb-0 text-sm" style={{ color: palette.textSecondary }}>{symbol} · {interval} · Binance Spot</p>
       </div>
-      <section className="overflow-hidden border border-[#344149] bg-[#192127]">
+      <section className="overflow-hidden border" style={{ borderColor: palette.border, backgroundColor: palette.surface }}>
         {error ? (
           <div role="alert" className="px-5 py-4 text-sm">
-            <div className="font-semibold text-[#f16d79]">Could not load market data</div>
-            <div className="mt-1 text-[#a1b0b7]">{error}</div>
+            <div className="font-semibold" style={{ color: palette.down }}>Could not load market data</div>
+            <div className="mt-1" style={{ color: palette.textSecondary }}>{error}</div>
           </div>
         ) : (
           <CandlestickChart candles={candles} />

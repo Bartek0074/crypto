@@ -8,4 +8,8 @@ export const palette = {
   primary: "#91b1ba",
   selectedBackground: "#293d43",
   selectedText: "#c5dadd",
+  grid: "#233038",
+  muted: "#6d818a",
+  up: "#35c99a",
+  down: "#f16d79",
 } as const;
