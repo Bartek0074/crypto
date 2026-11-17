@@ -9,6 +9,7 @@ const pages = [
   { href: "/", label: "Home" },
   { href: "/strategy/strategy-one", label: "Strategy 1" },
   { href: "/strategy/strategy-two", label: "Strategy 2" },
+  { href: "/strategy-test", label: "Strategy Test" },
 ];
 
 export function Navigation({ children }: Readonly<{ children: React.ReactNode }>) {
