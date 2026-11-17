@@ -45,3 +45,6 @@ export interface Trade {
   quantity: number;
   pnl: number | null;
 }
+
+export type CandleSymbol = "BTCUSDT" | "ETHUSDT";
+export type CandleInterval = "1h" | "2h" | "4h" | "1d";
