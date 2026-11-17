@@ -60,6 +60,7 @@ export function CandlestickChart({
     const chart = createChart(container, {
       autoSize: true,
       layout: { background: { type: ColorType.Solid, color: palette.surface }, textColor: palette.textSecondary },
+      localization: { locale: "pl-PL" },
       crosshair: { mode: CrosshairMode.Normal },
       grid: { vertLines: { color: palette.grid }, horzLines: { color: palette.grid } },
       rightPriceScale: { borderColor: palette.border, scaleMargins: { top: 0.1, bottom: 0.25 } },
@@ -161,7 +162,8 @@ export function CandlestickChart({
   }, [signals]);
 
   const candleColor = hovered && hovered.close >= hovered.open ? UP : DOWN;
-  const format = (value: number) => value.toLocaleString("en-US", { minimumFractionDigits: 2 });
+  const format = (value: number) => value.toLocaleString("pl-PL", { minimumFractionDigits: 2 });
+  const changePercent = hovered ? ((hovered.close - hovered.open) / hovered.open) * 100 : 0;
 
   return (
     <div className="relative">
@@ -172,13 +174,14 @@ export function CandlestickChart({
           style={{ borderColor: palette.border, backgroundColor: `${palette.sidebar}e6` }}
         >
           <span style={{ color: palette.textSecondary }}>
-            {new Date(hovered.time * 1000).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" })}
+            {new Date(hovered.time * 1000).toLocaleDateString("pl-PL", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" })}
           </span>
           <span>O <span style={{ color: candleColor }}>{format(hovered.open)}</span></span>
           <span>H <span style={{ color: candleColor }}>{format(hovered.high)}</span></span>
           <span>L <span style={{ color: candleColor }}>{format(hovered.low)}</span></span>
           <span>C <span style={{ color: candleColor }}>{format(hovered.close)}</span></span>
-          <span>Vol <span style={{ color: candleColor }}>{hovered.volume.toLocaleString("en-US")}</span></span>
+          <span>Vol <span style={{ color: candleColor }}>{hovered.volume.toLocaleString("pl-PL")}</span></span>
+          <span style={{ color: candleColor }}>{changePercent >= 0 ? "+" : ""}{format(changePercent)}%</span>
         </div>
       )}
       <div
